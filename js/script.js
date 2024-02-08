@@ -1,57 +1,50 @@
 // new year countdown func
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
-const countDown = document.getElementById("countdown");
-const fireWorkBtn = document.getElementById("fireWorkBtn");
-const headingOne = document.getElementById("headingOne");
-const headingTwo = document.getElementById("headingTwo");
-const cap = document.getElementById("cap");
-const cap2 = document.getElementById("cap2");
-const fireWorkBtn2 = document.getElementById("fireWorkBtn2");
-const face2 = document.getElementById("face2");
-
-const currentYear = new Date().getFullYear();
-
-const newYearTime = new Date(`January 01 ${currentYear + 1} 00:00:00`);
-
-function updateCountDown() {
-   const currentTime = new Date();
-   diff = newYearTime - currentTime;
-
-   const d = Math.floor(diff / 1000 / 60 / 60 / 24);
-
-   const h = Math.floor(diff / 1000 / 60 / 60) % 24;
-
-   const m = Math.floor(diff / 1000 / 60) % 60;
-
-   const s = Math.floor(diff / 1000) % 60;
-
-   days.innerHTML = d;
-   hours.innerHTML = h < 10 ? "0" + h : h;
-
-   minutes.innerHTML = m < 10 ? "0" + m : m;
-
-   seconds.innerHTML = s < 10 ? "0" + s : s;
+function startClock() {
+   var dateText = document.getElementById("dateText");
+   var hourText = document.getElementById("hourText");
+   var minuteText = document.getElementById("minuteText");
+   var secondText = document.getElementById("secondText");
+   
+   var interval = setInterval(function() {
+       var now = new Date();
+       var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+       var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+       var dayName = days[now.getDay()];
+       var monthName = months[now.getMonth()];
+       var day = now.getDate();
+       var year = now.getFullYear();
+       var hours = pad(now.getHours());
+       var minutes = pad(now.getMinutes());
+       var seconds = pad(now.getSeconds());
+       
+       var dateString = dayName + ", " + day + " " + monthName + " " + year;
+       var timeString = hours;
+       var minuteString = minutes;
+       var secondString = seconds;
+       
+       dateText.innerHTML = dateString;
+       hourText.innerHTML = "Jam: " + timeString;
+       minuteText.innerHTML = "Menit: " + minuteString;
+       secondText.innerHTML = "Detik: " + secondString;
+       
+       var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 4, 0, 0, 0); // Set target jam 04:00:00
+        if (now >= targetTime) {
+           clearInterval(interval);
+           document.body.style.backgroundColor = "white";
+           playBirthdayMusic();
+           fireWork();
+           startCountdown();
+       }
+   }, 1000);
 }
 
-setInterval(updateCountDown, 1000);
-
-// emoji func
-document.querySelector("body").addEventListener("mousemove", eyeball);
-
-function eyeball() {
-   const eye = document.querySelectorAll(".eye");
-   eye.forEach((eye) => {
-      const x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
-      const y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
-      const radian = Math.atan2(event.pageX - x, event.pageY - y);
-      const rot = radian * (180 / Math.PI) * -1 + 270;
-      eye.style.transform = "rotate(" + rot + "deg)";
-   });
+function pad(number) {
+   return (number < 10 ? '0' : '') + number;
 }
-
+var audioB = document.getElementById("birthdayAudio");
+function playBirthdayMusic() {
+   audioB.play();
+}
 function fireWork() {
    $(".fireWork").fireworks({
       sound: true, // sound effect
@@ -59,20 +52,22 @@ function fireWork() {
       width: "100%",
       height: "100%",
    });
-   headingOne.innerHTML = "🎈🎉 Happy New Year ! 🥳";
-   headingTwo.innerHTML =
-      "Let us remember the good times along with the bad And pray for sunnier days in 2021 ...";
-   cap.style.display = "block";
-   cap2.style.display = "block";
 }
 
-fireWorkBtn.addEventListener("click", () => {
-   fireWork();
-});
+function startCountdown() {
+   var secondsLeft = 10; // Hitung mundur dari 10 detik
 
-fireWorkBtn2.addEventListener("click", () => {
-   fireWork();
-   headingOne.style.marginBottom = "150px";
-   headingTwo.style.marginTop = "150px";
-   face2.style.marginTop = "140px";
-});
+   var countdownInterval = setInterval(function() {
+
+       if (secondsLeft === 0) {
+           clearInterval(countdownInterval);
+           // Lanjut ke halaman berikutnya setelah 10 detik
+           setTimeout(function() {
+               window.location.href = "index-dua.html";
+           }, 10000);
+       }
+
+       secondsLeft--;
+   }, 1000);
+}
+

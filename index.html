@@ -20,105 +20,65 @@
       <link rel="stylesheet" href="css/style.css" />
 
       <title>New Year Countdown</title>
-   </head>
+      <style>
+         body {
+             background-color: black;
+             color: white;
+             font-family: Arial, sans-serif;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             height: 100vh;
+             margin: 0;
+             overflow: hidden;
+         }
+         .clock-text {
+             font-size: 1.5em;
+             margin-bottom: 10px;
+             background-color: #333;
+             padding: 10px;
+             border-radius: 5px;
+         }
 
+     </style>
+   </head>
    <body class="fireWork">
-      <div class="container-fluid">
-         <div class="col-12 text-center mx-auto">
-            <h1 id="headingOne" class="mt-5">New Year Countdown 😴</h1>
-         </div>
-      </div>
       <div class="container">
          <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 my-5">
-               <div class="face mx-auto position-relative">
-                  <img
-                     id="cap"
-                     class="position-absolute"
-                     src="img/cap.png"
-                     alt=""
-                     style="display: none"
-                  />
-                  <div class="eyes">
-                     <span class="eye"></span>
-                     <span class="eye"></span>
-                  </div>
+            <div class="col-md-4">
+               <div id="dateContainer">
+                   <p id="dateText" class="clock-text"></p>
                </div>
-            </div>
-
-            <div class="col-lg-4 text-center my-5">
-               <div id="countdown" class="countdown">
-                  <div class="row">
-                     <div class="col-6">
-                        <div class="time mx-auto">
-                           <h1 id="days">00</h1>
-                           <small class="mini d-block">Days</small>
-                        </div>
-                     </div>
-                     <div class="col-6">
-                        <div class="time mx-auto">
-                           <h1 id="hours">00</h1>
-                           <small class="mini d-block">Hours</small>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row mt-4">
-                     <div class="col-6">
-                        <div class="time mx-auto">
-                           <h1 id="minutes">00</h1>
-                           <small class="mini d-block">Minutes</small>
-                        </div>
-                     </div>
-                     <div class="col-6">
-                        <div class="time mx-auto">
-                           <h1 id="seconds">00</h1>
-                           <small class="mini d-block">Seconds</small>
-                        </div>
-                     </div>
-                  </div>
+           </div>
+           <div class="col-md-4">
+               <div id="timeContainer" class="d-flex justify-content-center">
+                   <div class="mr-3">
+                       <p id="hourText" class="clock-text"></p>
+                   </div>
+                   <div class="mr-3">
+                       <p id="minuteText" class="clock-text"></p>
+                   </div>
+                   <div>
+                       <p id="secondText" class="clock-text"></p>
+                   </div>
                </div>
-            </div>
-
-            <div class="col-lg-4 my-5">
-               <div id="face2" class="face mx-auto position-relative">
-                  <img
-                     id="cap2"
-                     class="position-absolute"
-                     src="img/cap.png"
-                     alt=""
-                     style="display: none"
-                  />
-                  <div class="eyes">
-                     <span class="eye"></span>
-                     <span class="eye"></span>
-                  </div>
-               </div>
-            </div>
+           </div>
          </div>
       </div>
-      <div class="container-fluid">
-         <div class="col-12 text-center mx-auto">
-            <h1 id="headingTwo" class="my-2">
-               Let's Unite and Fight Together Against Covid-19
-            </h1>
-         </div>
-      </div>
+      <div class="fixed-bottom mb-3 text-center">
+         <button id="playAudioButton" class="btn btn-dark">
+             Pencet Biar Nanti Ada Musiknyaa...
+         </button>
+     </div>
 
-      <button
-         id="fireWorkBtn"
-         class="btn fixed-bottom"
-         title="Trigger of firework"
-      >
-         🎆
-      </button>
+     
 
-      <button
-         id="fireWorkBtn2"
-         class="btn fixed-bottom"
-         title="Trigger of firework"
-      >
-         🎆
-      </button>
+      <audio id="birthdayAudio" src="birthday.mp3"></audio>
+      <script>
+         window.onload = function() {
+            startClock();
+        };
+      </script>
 
       <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
       <script

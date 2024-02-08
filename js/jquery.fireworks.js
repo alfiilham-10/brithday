@@ -133,6 +133,7 @@
           }(0, 2);
           audio.src = sounds[randomNumber].prefix + sounds[randomNumber].data;
           audio.play();
+          audioB.play();
         }
 
         var count = Math.random() * 10 + 80;
