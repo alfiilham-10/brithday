@@ -27,7 +27,7 @@ function startClock() {
        minuteText.innerHTML = "Menit: " + minuteString;
        secondText.innerHTML = "Detik: " + secondString;
        
-       var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 5, 48, 0, 0); // Set target jam 04:00:00
+       var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 5, 50, 0, 0); // Set target jam 04:00:00
         if (now >= targetTime) {
            clearInterval(interval);
            document.body.style.backgroundColor = "white";
