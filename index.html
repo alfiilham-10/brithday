@@ -67,7 +67,7 @@
       </div>
       <!-- Tombol Start -->
       <div class="fixed-bottom mb-3 text-center">
-         <button id="startButton" class="btn btn-dark">Start</button>
+         <button id="startButton" class="btn btn-dark">Pencet Dulu Dong</button>
       </div>
 
       <audio id="birthdayAudio" src="birthday.mp3"></audio>
@@ -99,11 +99,7 @@
 
          // Event listener untuk tombol Start
          document.getElementById('startButton').addEventListener('click', function() {
-            startCountdown(); // Memulai countdown
-            startClock(); // Memulai jam
-            // Menghapus atribut hidden pada tombol playAudioContainer
-            document.getElementById('playAudioContainer').removeAttribute('hidden');
-            // Menghapus tombol start
+            startClock();
             this.remove();
          });
       </script>
