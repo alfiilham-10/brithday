@@ -65,19 +65,47 @@
            </div>
          </div>
       </div>
+      <!-- Tombol Start -->
       <div class="fixed-bottom mb-3 text-center">
-         <button id="playAudioButton" class="btn btn-dark">
-             Pencet Biar Nanti Ada Musiknyaa...
-         </button>
-     </div>
-
-     
+         <button id="startButton" class="btn btn-dark">Start</button>
+      </div>
 
       <audio id="birthdayAudio" src="birthday.mp3"></audio>
       <script>
-         window.onload = function() {
-            startClock();
-        };
+         // Fungsi untuk memulai jam
+         function startClock() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('hourText').textContent = hours;
+            document.getElementById('minuteText').textContent = minutes;
+            document.getElementById('secondText').textContent = seconds;
+            setInterval(function() {
+               var now = new Date();
+               var hours = now.getHours().toString().padStart(2, '0');
+               var minutes = now.getMinutes().toString().padStart(2, '0');
+               var seconds = now.getSeconds().toString().padStart(2, '0');
+               document.getElementById('hourText').textContent = hours;
+               document.getElementById('minuteText').textContent = minutes;
+               document.getElementById('secondText').textContent = seconds;
+            }, 1000);
+         }
+
+         // Fungsi untuk memulai countdown
+         function startCountdown() {
+            // Kode countdown di sini
+         }
+
+         // Event listener untuk tombol Start
+         document.getElementById('startButton').addEventListener('click', function() {
+            startCountdown(); // Memulai countdown
+            startClock(); // Memulai jam
+            // Menghapus atribut hidden pada tombol playAudioContainer
+            document.getElementById('playAudioContainer').removeAttribute('hidden');
+            // Menghapus tombol start
+            this.remove();
+         });
       </script>
 
       <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
